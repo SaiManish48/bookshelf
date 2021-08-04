@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500&family=Noto+Sans:wght@700&display=swap" rel="stylesheet">
+<html>
+    <body align="center">
+        <div class="d">
+           
+            <a href="{{url_for('dashboard')}}"><b class="s">Dashboard</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{{url_for('logout')}}" ><b class="s">Logout</b></a>
+    </div>
+    <h3><b class="s">Books present in My Shelf</b></h3>
+    <div class="c"><br>
+        
+        <table align="center" class="table table-inverse" border = "1" width = "500" height = "150">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">NAME</th>
+                <th scope="col">AUTHOR</th>
+                <th scope="col">YEAR</th>
+              </tr>
+            </thead>
+              {% for i in m %}
+              <tr>
+                <td><div><form action="{{url_for('myshelfdel')}}" method="POST">
+                  <button name="shelfd" value={{i.isbn}} class="dsh">Delete</button>
+                </form></div>
+                </td>
+              <td>{{i.isbn}}
+              </td>
+              <td>{{i.name}}
+              </td>
+              <td>{{i.author}}
+              </td>
+              <td>{{i.year}}
+              </td>
+              </tr>
+              {% endfor %}
+          </table><br>
+          </div>
+
+    </body>
+</html>
